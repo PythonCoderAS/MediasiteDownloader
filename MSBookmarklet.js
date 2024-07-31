@@ -262,9 +262,7 @@ javascript: (() => {
             <div id="MSDLinfo">\
               <ul style="list-style: outside; !important">\
                 <li>Copy the title: <input type="text" onClick="this.select();" value="' + document.title + '" style="background-color: #FFF"></li>\
-                <li>Right-click on the thumbnail(s) and choose "Save <span style="font-weight: bold;">link</span> as..."</li>\
-                <div id="MSDLvideos"></div>\
-                <li>Paste in to rename file correctly and save it</li>\
+                <li>Copy the Manifest URL and put it into <code>yt-dlp -o "<your title here>.%(ext)s" -N 5 "<your url here></code>:  <input type="text" id="MSDLvideos" onClick="this.select();" style="background-color: #FFF"></li>\
                 <li>Click <a href="https://klvn.github.io/MediasiteDownloader/" target="_blank">here</a> for more detailed instructions</li>\
               </ul>\
             </div>\
@@ -276,11 +274,11 @@ javascript: (() => {
         for (var i = 0; i < allPresentations.length; i++) {
           if (allPresentations[i].VideoUrls.length) {
             for (var j = 0; j < allPresentations[i].VideoUrls.length; j++) {
-              if (allPresentations[i].VideoUrls[j].MimeType == "video/mp4") {
+              if (allPresentations[i].VideoUrls[j].MimeType == "audio/x-mpegurl") {
                 videoAvailable = true;
                 var thumbnail = window.location.origin + allPresentations[i].ThumbnailUrl;
                 var videoUrl = allPresentations[i].VideoUrls[j].Location;
-                document.getElementById("MSDLvideos").innerHTML += "<li><a href='" + videoUrl + "' target='_blank'><img class='MSDLthumbnail' src='" + thumbnail + "'></a></li>";
+                document.getElementById("MSDLvideos").value = videoUrl;
               }
             }
           }
@@ -289,9 +287,9 @@ javascript: (() => {
           videoAvailable = true;
           var thumbnail = window.location.origin + playerOpts.d.Presentation.ThumbnailUrl;
           var videoUrl = playerOpts.d.Presentation.VodcastUrl;
-          document.getElementById("MSDLvideos").innerHTML += "<li>Vodcast:<br><a href='" + videoUrl + "' target='_blank'><img class='MSDLthumbnail' src='" + thumbnail + "'></a></li>";
+          document.getElementById("MSDLvideos").value = videoUrl;
         }
-        if (!videoAvailable) document.getElementById("MSDLinfo").innerHTML = "<li>Sorry, no video(s) available.</li>";
+        if (!videoAvailable) document.getElementById("MSDLinfo").value = "Sorry, no video(s) available.";
       }
       MediasitePlayer.pause();
       location.href = "#open-modal";
