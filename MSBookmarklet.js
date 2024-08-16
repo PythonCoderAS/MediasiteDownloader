@@ -262,7 +262,8 @@ javascript: (() => {
             <div id="MSDLinfo">\
               <ul style="list-style: outside; !important">\
                 <li>Copy the title: <input type="text" onClick="this.select();" value="' + document.title + '" style="background-color: #FFF"></li>\
-                <li>Copy the Manifest URL and put it into <code>yt-dlp -o "<your title here>.%(ext)s" -N 5 "<your url here></code>:  <input type="text" id="MSDLvideos" onClick="this.select();" style="background-color: #FFF"></li>\
+                <!-- <li>Copy the Manifest URL and put it into <code>yt-dlp -o "<your title here>.%(ext)s" -N 5 "<your url here></code>:  <input type="text" id="MSDLvideos" onClick="this.select();" style="background-color: #FFF"></li> -->\
+                <li>Run this:  <input type="text" id="MSDLvideos" onClick="this.select();" style="background-color: #FFF"></li>\
                 <li>Click <a href="https://klvn.github.io/MediasiteDownloader/" target="_blank">here</a> for more detailed instructions</li>\
               </ul>\
             </div>\
@@ -278,7 +279,7 @@ javascript: (() => {
                 videoAvailable = true;
                 var thumbnail = window.location.origin + allPresentations[i].ThumbnailUrl;
                 var videoUrl = allPresentations[i].VideoUrls[j].Location;
-                document.getElementById("MSDLvideos").value = videoUrl;
+                document.getElementById("MSDLvideos").value = `yt-dlp -o "${document.title}.%(ext)s" -N 5 '${videoUrl}'`;
               }
             }
           }
