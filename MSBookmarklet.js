@@ -279,7 +279,7 @@ javascript: (() => {
                 videoAvailable = true;
                 var thumbnail = window.location.origin + allPresentations[i].ThumbnailUrl;
                 var videoUrl = allPresentations[i].VideoUrls[j].Location;
-                document.getElementById("MSDLvideos").value = `yt-dlp -o "${document.title}.%(ext)s" -N 5 '${videoUrl}'`;
+                document.getElementById("MSDLvideos").value = `yt-dlp -o "${document.title}.%(ext)s" -N 25 '${videoUrl}'`;
               }
             }
           }
